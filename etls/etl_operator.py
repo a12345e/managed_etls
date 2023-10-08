@@ -12,6 +12,11 @@ class ETLOperator(ABC):
         pass
 
     @abstractmethod
+    @property
+    def etl(self):
+        pass
+
+    @abstractmethod
     def extract(self) -> dict[string, DataFrameWrapper]:
         pass
 
@@ -20,7 +25,7 @@ class ETLOperator(ABC):
         pass
 
     @abstractmethod
-    def load(self, dataframe: DataFrameWrapper):
+    def load(self, dataframe: DataFrameWrapper) -> string:
         pass
 
     @abstractmethod
@@ -32,3 +37,5 @@ class ETLOperator(ABC):
     def get_create_ready_products(self, ready_products: typing.Sequence[ProductWrapper]) \
             -> typing.Sequence[ProductWrapper]:
         pass
+
+

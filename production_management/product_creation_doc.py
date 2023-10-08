@@ -13,6 +13,8 @@ class PRODUCT_CREATION_STATUS(str, Enum):
      READY = 'ready'
      FAILED  = 'failed'
      USED = 'used'
+
+
 class PRODUCT_CREATION_FIELD(str, Enum):
         id = 'id'
         realm = 'realm'
@@ -24,6 +26,7 @@ class PRODUCT_CREATION_FIELD(str, Enum):
         create_end = 'create_end'
         run_object = 'run' # will be used for run parameters like job id, queue etc
         status = 'status'
+
 def initialize_product_creation(
         realm: string,
         etl_name: string,

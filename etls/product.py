@@ -4,15 +4,10 @@ import string
 
 
 @final
-class ProductWrapper(ABC):
-    def __init__(self, etl: string, name: string, partition: string):
-        self._etl: Final[str] = etl
+class Product(ABC):
+    def __init__(self, name: string, partition: string):
         self._name: Final[str] = name
         self._partition: Final[str] = partition
-
-    @property
-    def etl(self):
-        return self._etl
 
     @property
     def name(self):

@@ -1,20 +1,19 @@
 from abc import ABC, abstractmethod
 import string
 import typing
-from dataframe_wrapper import DataFrameWrapper
-from product_wrapper import ProductWrapper
+from etls.dataframe_wrapper import DataFrameWrapper
+from etls.product import Product
+from etls.operator_identity import OperatorIdentity
 
 
 class ETLOperator(ABC):
+    def __init__(self,
+                 identity: OperatorIdentity):
+        self._name: typing.Final[OperatorIdentity] = identity
 
-    def __init__(self, product: ProductWrapper):
-        self._product = product
-        pass
-
-    @abstractmethod
     @property
-    def etl(self):
-        pass
+    def identity(self):
+        return self._identity
 
     @abstractmethod
     def extract(self) -> dict[string, DataFrameWrapper]:
@@ -29,13 +28,23 @@ class ETLOperator(ABC):
         pass
 
     @abstractmethod
-    def get_create_potential_products(self, ready_products: typing.Sequence[ProductWrapper]) \
-            -> typing.Sequence[ProductWrapper]:
+    def get_products_partially_ready_for_creation(self, ready_products: typing.Sequence[Product]) \
+            -> typing.Sequence[Product]:
+        """
+        Will see all products that at least one required product for their creation is redy for use.
+        :param ready_products:
+        :return: Sequence of ProductWrapper objects
+        """
         pass
 
     @abstractmethod
-    def get_create_ready_products(self, ready_products: typing.Sequence[ProductWrapper]) \
-            -> typing.Sequence[ProductWrapper]:
+    def get_products_ready_to_be_created_now(self, ready_products: typing.Sequence[Product]) \
+            -> typing.Sequence[Product]:
+        """
+        Returns products that can now be created.
+        :param ready_products:
+        :return:  Sequence of ProductWrapper objects
+        """
         pass
 
 

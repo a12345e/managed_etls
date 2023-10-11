@@ -1,10 +1,10 @@
 import datetime
 from abc import ABC, abstractmethod
-import string
 from typing import Sequence
-from dataframe_wrapper import DataFrameWrapper
-from product import Product
-from etls.operator_identity import OperatorIdentity
+from common.product import Product
+from etl.operator_identity import OperatorIdentity
+from etl.realm import Realm
+from sensor.sensor_operation import SensorOperation
 
 
 class SensorOperator(ABC):
@@ -17,9 +17,9 @@ class SensorOperator(ABC):
         return self._identity
 
     @abstractmethod
-    def create(self,
+    def create(self, realm: Realm,
                exists_already: Sequence[Product],
                start_time: datetime.datetime,
-               end_time: datetime.datetime):
+               end_time: datetime.datetime) -> SensorOperation:
         pass
 

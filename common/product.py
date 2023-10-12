@@ -14,11 +14,13 @@ class Product(ABC):
        will not have source raw materials.
        We also write down the etl_operator doing to job as it is part of the very product identification
     """
-    def __init__(self, etl_operator: ETLOperator, name: string, partition: string,
+    def __init__(self, etl_operator: ETLOperator,
+                 name: string,
+                 partition: string,
                  source_operations: Sequence[ETLOperation] = None):
         self._etl_operator= etl_operator
-        self._name: Final[str] = name
-        self._partition: Final[str] = partition
+        self._name: Final[string] = name
+        self._partition: Final[string] = partition
         self._source_operations = source_operations
 
     @property

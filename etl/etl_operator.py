@@ -1,10 +1,10 @@
 from abc import ABC, abstractmethod
 import typing
-from etl.etl_operation import  ETLOperation
-from etl.realm import Realm
+from etl.etl_operation import ETLOperation
+from manager.realm import Realm
 from common.product import Product
 from etl.operator_identity import OperatorIdentity
-from etl.etl_mission import ETLMission
+from common.product import Product
 
 
 class ETLOperator(ABC):
@@ -17,18 +17,22 @@ class ETLOperator(ABC):
       4. Can say what missions it can build from provided raw materials
       The set of raw in those missions are a subset of the raw materials it can use
     """
-    def __init__(self,
-                 identity: OperatorIdentity):
+
+    def __init__(self, identity: OperatorIdentity):
         self._identity: typing.Final[OperatorIdentity] = identity
+
     @property
     def identity(self):
         return self._identity
+
     @abstractmethod
-    def execute(self, realm: Realm, mission: ETLMission) ->  ETLOperation:
+    def execute(self, realm: Realm, mission: Product) -> ETLOperation:
         pass
+
     @abstractmethod
     def get_raw_materials_it_can_use_potentially(self,
-            ready_raw_materials: typing.Sequence[Product]) -> typing.Sequence[Product]:
+                                                 ready_raw_materials: typing.Sequence[Product]) -> (
+            typing.Sequence)[Product]:
         """
         Return all raw materials it can use potentially. Potentially and not effectively
         means that it may require other raw materials not provided.
@@ -36,14 +40,13 @@ class ETLOperator(ABC):
         :return: Sequence of ETL missions
         """
         pass
+
     @abstractmethod
     def create_missions_from_raw_materials(self, ready_products: typing.Sequence[Product]) \
-            -> typing.Sequence[ETLMission]:
+            -> typing.Sequence[Product]:
         """
         Returns ETL missions that it can form from the given raw materials
         :param ready_products:
         :return:  Sequence of ETL missions
         """
         pass
-
-

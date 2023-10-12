@@ -1,14 +1,26 @@
 import string
 from typing import Final
+from enum import Enum, auto
 
 
 class OperatorIdentity:
-    def __init__(self, name: string,
+    class Type(Enum):
+        Sensor = auto()
+        ETL = auto()
+
+    def __init__(self,
+                 operator_type: Type,
+                 name: string,
                  version_number: string,
                  version_description: string):
+        self._operator_type: Final[OperatorIdentity.Type] = operator_type
         self._name: Final[string] = name
         self._version_number: Final[string] = version_number
         self._version_description:  Final[string] = version_description
+
+    @property
+    def operator_type(self):
+        return self._operator_type
 
     @property
     def name(self):

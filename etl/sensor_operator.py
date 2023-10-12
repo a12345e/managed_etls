@@ -1,10 +1,11 @@
 import datetime
+import string
 from abc import ABC, abstractmethod
 from typing import Sequence
 from common.product import Product
 from etl.operator_identity import OperatorIdentity
-from etl.realm import Realm
-from sensor.sensor_operation import SensorOperation
+from manager.realm import Realm
+from etl.etl_operation import ETLOperation
 
 
 class SensorOperator(ABC):
@@ -19,7 +20,7 @@ class SensorOperator(ABC):
     @abstractmethod
     def create(self, realm: Realm,
                exists_already: Sequence[Product],
-               start_time: datetime.datetime,
-               end_time: datetime.datetime) -> SensorOperation:
+               partitions: Sequence[string],
+               end_time: datetime.datetime) -> ETLOperation:
         pass
 

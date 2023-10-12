@@ -1,7 +1,7 @@
 from typing import Sequence
-from etl.etl_operator import  ETLOperator
-from etl.sensor_operator import  SensorOperator
-from manager.realm import  Realm
+from etl.etl_operator import ETLOperator
+from etl.sensor_operator import SensorOperator
+from manager.realm import Realm
 from datetime import datetime
 
 
@@ -12,4 +12,4 @@ class ShiftPolicy:
                  shift_end: datetime,
                  operators: Sequence[ETLOperator],
                  sensors: Sequence[SensorOperator]):
-    pass
+        pass

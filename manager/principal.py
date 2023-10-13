@@ -1,6 +1,6 @@
 from enum import Enum, auto
 
 
-class Realm(Enum):
+class Principal(Enum):
     PRODUCTION = auto()
     TEST = auto()

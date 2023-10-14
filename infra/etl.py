@@ -1,19 +1,19 @@
 from abc import abstractmethod
 import typing
 import string
+from abc import ABC
 from operation import Operation
-from manager.principal import Principal
-from operator import Operator
+from infra.principal import Principal
+from infra.operator import Operator
 from product import Product
 
 
-class ETLOperator(Operator):
+class ETL(ABC, Operator):
     """
-    The ETL operator is an operator with 3 functions:
-        Execution of a mission in the name of a principal resulting with an ETL operation
-        Respond what products is an operate on potentially
-        Respond what products it can effectively create from a set of raw materials
-
+        The ETL operator is an abstract operator with 3 functions:
+        Execution of a mission on behalf of a principal resulting with an ETL operation
+        Respond what products is can operate on potentially from as set of raw materials
+        Respond what products it can effectively create from a set of raw materials, meaning all dependencies exist
     """
 
     def __init__(self, name: string,

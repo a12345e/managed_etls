@@ -1,6 +1,5 @@
 import string
 from typing import Final
-from enum import Enum, auto
 
 
 class Operator:

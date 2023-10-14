@@ -1,6 +1,7 @@
-from elasticsearch import Elasticsearch
+from abc import ABC
 
-def etl_manage(es: Elasticsearch):
+
+class OperationsManager(ABC):
     """
     Initialize:
         create all operator objects, etl ones and sensors

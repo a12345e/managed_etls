@@ -1,7 +1,7 @@
 from typing import Final
 
 
-class ETLInfraVersion:
+class InfraVersion:
     def __init__(self):
         self._number: Final[str] = '1.0'
         self._description:  Final[str] = 'initial'

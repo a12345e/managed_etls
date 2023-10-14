@@ -10,12 +10,18 @@ class OperationsStore(ABC):
     @abstractmethod
     def get_operations(self, after: datetime) -> Sequence[Operation]:
         pass
+
+    @abstractmethod
+    def get_operations(self, after: datetime, phase: Operation.PHASE) -> Sequence[Operation]:
+        pass
+
     @abstractmethod
     def get_operations(self, phase: Operation.PHASE) -> Sequence[Operation]:
         pass
     @abstractmethod
     def get_operations(self, ids: Sequence[string]) -> Sequence[Operation]:
         pass
+
     @abstractmethod
     def create_operations(self, operations: Sequence[Operation]):
         pass

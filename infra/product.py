@@ -1,7 +1,7 @@
 from abc import ABC
 from typing import final
 import string
-from infra.abstracts.operator import Operator
+from infra.abstracts.operator.operator import Operator
 
 
 @final

@@ -7,6 +7,8 @@ from infra.abstracts.storage.operations_store import OperationsStore
 from infra.abstracts.mng.principal import Principal
 
 
+def filter(x : Operation):
+    x.principal == Principal.TEST
 class MyTestCase(unittest.TestCase):
     def test_something(self):
         op = Operation(principal=Principal.TEST,
@@ -17,7 +19,7 @@ class MyTestCase(unittest.TestCase):
                        )
         store: OperationsStore = InMemoryOperationsStorage()
         store.create_operations([op])
-        result = store.get_operations(lambda x : x.principal == Principal.TEST)
+        result = store.get_operations(filter)
         self.assertEqual(1, len(result))  # add assertion here
 
 if __name__ == '__main__':

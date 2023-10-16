@@ -1,8 +1,7 @@
 from abc import ABC
-from typing import final, Final, Sequence
+from typing import final
 import string
-from infra.operator import Operator
-from operation import Operation
+from infra.abstracts.operator import Operator
 
 
 @final

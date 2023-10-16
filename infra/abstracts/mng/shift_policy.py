@@ -1,7 +1,7 @@
 from typing import Sequence
-from infra.etl import ETL
-from infra.sensor import Sensor
-from infra.principal import Principal
+from infra.abstracts.operator.etl import ETL
+from infra.abstracts.operator.sensor import Sensor
+from infra.abstracts.mng.principal import Principal
 from datetime import datetime
 
 
@@ -14,7 +14,7 @@ class ShiftPolicy:
                  sensors: Sequence[Sensor]):
         """
         It is the shift of the principal to take place implementing the above policy, and the principal must never
-        start any new operation outside the shift time by means of the real time clock. So if the shift does not
+        start any new operator outside the shift time by means of the real time clock. So if the shift does not
         coincide with the current clock time the principal will do nothing and backoff.
         The principal should complete all the operations it had
         started with in the shift and there is no limit to finish them.
@@ -22,7 +22,7 @@ class ShiftPolicy:
         The principal entering at valid shift must take the following measures,
         1) Check that there is no other same principal on shift duty, otherwise
         it must log and error that return immediately with failure.
-        2) Check for zombie operation, namely operations that show death signs and had started at previous shift.
+        2) Check for zombie operator, namely operations that show death signs and had started at previous shift.
            It is closing them as used operations ending with failure
         3) Check for product names that have more than one instance in ready state.
             If not than try to keep the one that currently being created or used, and remove the rest, with error report

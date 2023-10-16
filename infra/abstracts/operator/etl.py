@@ -2,16 +2,16 @@ from abc import abstractmethod
 import typing
 import string
 from abc import ABC
-from operation import Operation
-from infra.principal import Principal
-from infra.operator import Operator
+from operator import Operation
+from infra.abstracts.mng.principal import Principal
+from infra.abstracts.operator import Operator
 from product import Product
 
 
 class ETL(ABC, Operator):
     """
         The ETL operator is an abstract operator with 3 functions:
-        Execution of a mission on behalf of a principal resulting with an ETL operation
+        Execution of a mission on behalf of a principal resulting with an ETL operator
         Respond what products is can operate on potentially from as set of raw materials
         Respond what products it can effectively create from a set of raw materials, meaning all dependencies exist
     """
@@ -20,7 +20,6 @@ class ETL(ABC, Operator):
                  version_number: string = None,
                  version_description: string = None):
         """
-        This is to create the
         :param name:
         :param version_number: version number
         :param version_description:
@@ -35,7 +34,6 @@ class ETL(ABC, Operator):
         :param mission:
         :return: Operation
         """
-
         pass
 
     @abstractmethod

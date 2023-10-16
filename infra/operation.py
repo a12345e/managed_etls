@@ -1,14 +1,14 @@
 from datetime import datetime
 from uuid import uuid4
-from typing import final, Sequence
-from enum import Enum, auto
-from infra.principal import Principal
-from product import Product
+from typing import Sequence, final
+from enum import Enum
+from infra.abstracts.mng.principal import Principal
+from infra.product import Product
 from typing import Final
 import string
-from infra.operator import Operator
 
 
+@final
 class Operation:
     class PHASE(Enum):
         CREATE = 1
@@ -45,6 +45,7 @@ class Operation:
     @property
     def id(self):
         return self._id
+
     @property
     def principal(self):
         return self._principal
@@ -52,10 +53,6 @@ class Operation:
     @property
     def mission(self):
         return self._mission
-
-    @property
-    def create_time(self):
-        return self._create_time
 
     @property
     def create_time(self):
@@ -77,7 +74,7 @@ class Operation:
     def phase(self, phase: PHASE):
         if self._phase.value >= phase.value:
             raise Exception("Set phase to " + phase.name + " while already phase is " + self._phase.name)
-        if self._phase == Operation.PHASE.CREATE and phase == Operation.PHASE.USED:
+        if self._phase != Operation.PHASE.READY and phase == Operation.PHASE.USED:
             raise Exception("Set phase to " + phase.name + " while yet phase is " + self._phase.name)
         if phase == Operation.PHASE.USED:
             self._complete_usage_time = datetime.now()

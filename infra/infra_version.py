@@ -1,6 +1,7 @@
-from typing import Final
+from typing import Final, final
 
 
+@final
 class InfraVersion:
     def __init__(self):
         self._number: Final[str] = '1.0'

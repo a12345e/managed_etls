@@ -21,8 +21,8 @@ class Operation:
                  principal: Principal,
                  mission: Product,
                  create_time: datetime,
-                 using_operations: Sequence[string] = None,
-                 used_by_operations: Sequence[string] = None):
+                 using_operations: Sequence[str] = Sequence[str],
+                 used_by_operations: Sequence[str] = Sequence[str]):
 
         """
         Operation adds the context of principal, and process to a mission being materialized

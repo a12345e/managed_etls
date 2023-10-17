@@ -1,7 +1,7 @@
 from abc import ABC
 from typing import final
 import string
-from infra.abstracts.operator.operator import Operator
+from infra.operator import Operator
 
 
 @final
@@ -12,7 +12,7 @@ class Product(ABC):
     def __init__(self, operator: Operator,
                  name: string,
                  batch: string):
-        self._etl_operator = operator
+        self._operator = operator
         self._name = name
         self._batch = batch
 
@@ -25,5 +25,5 @@ class Product(ABC):
         return self._name
 
     @property
-    def _batch(self):
+    def batch(self):
         return self._batch

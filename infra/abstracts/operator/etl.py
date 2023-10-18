@@ -2,16 +2,16 @@ from abc import abstractmethod
 import typing
 import string
 from abc import ABC
-from operator import Operation
+from infra.operation import Operation
 from infra.abstracts.mng.principal import Principal
-from infra.abstracts.operator import Operator
-from product import Product
+from infra.operator import Operator
+from infra.product import Product
 
 
-class ETL(ABC, Operator):
+class Etl(ABC, Operator):
     """
-        The ETL operator is an abstract operator with 3 functions:
-        Execution of a mission on behalf of a principal resulting with an ETL operator
+        The Etl operator is an abstract operator with 3 functions:
+        Execution of a mission on behalf of a principal resulting with an Etl operator
         Respond what products is can operate on potentially from as set of raw materials
         Respond what products it can effectively create from a set of raw materials, meaning all dependencies exist
     """
@@ -37,23 +37,22 @@ class ETL(ABC, Operator):
         pass
 
     @abstractmethod
-    def get_raw_materials_it_can_use_potentially(self,
-                                                 ready_raw_materials: typing.Sequence[Product]) -> (
+    def usable_products(self, ready_raw_materials: typing.Sequence[Product]) -> (
             typing.Sequence)[Product]:
         """
         Return all raw materials it can use potentially. Potentially and not effectively
         means that it may require other raw materials not provided.
         :param ready_raw_materials:
-        :return: Sequence of ETL missions
+        :return: Sequence of Etl missions
         """
         pass
 
     @abstractmethod
-    def create_missions_from_raw_materials(self, ready_products: typing.Sequence[Product]) \
+    def ready_missions(self, ready_products: typing.Sequence[Product]) \
             -> typing.Sequence[Product]:
         """
-        Returns ETL missions that it can form from the given raw materials
+        Returns Etl missions that it can form from the given raw materials
         :param ready_products:
-        :return:  Sequence of ETL missions
+        :return:  Sequence of Etl missions/products
         """
         pass

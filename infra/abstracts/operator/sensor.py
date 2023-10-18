@@ -11,7 +11,7 @@ from infra.abstracts.mng.principal import Principal
 class Sensor(ABC, Operator):
     """
     Sensors are used to discover raw materials (operations) prepared by our suppliers.
-    Unlike our ETL the operator of discovery
+    Unlike our Etl the operator of discovery
     creates an operator that has no source operations as those source operations creating the raw materials
     come from our suppliers realm.
     Sensors can run in context of an OperationsManager or can run from a one time impl, doing one time shot.

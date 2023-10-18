@@ -1,5 +1,5 @@
 from typing import Sequence
-from infra.abstracts.operator.etl import ETL
+from infra.abstracts.operator.etl import Etl
 from infra.abstracts.operator.sensor import Sensor
 from infra.abstracts.mng.principal import Principal
 from datetime import datetime
@@ -10,7 +10,7 @@ class ShiftPolicy:
                  realm: Principal,
                  shift_start: datetime,
                  shift_end: datetime,
-                 operators: Sequence[ETL],
+                 operators: Sequence[Etl],
                  sensors: Sequence[Sensor]):
         """
         It is the shift of the principal to take place implementing the above policy, and the principal must never

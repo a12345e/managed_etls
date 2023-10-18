@@ -2,6 +2,7 @@ import unittest
 from infra.abstracts.operator.test.my_sensor import MySensor
 from infra.abstracts.mng.principal import Principal
 
+
 class MyTestCase(unittest.TestCase):
     def test_something(self):
         sensor = MySensor("my_sensor","1.1","aaaa")

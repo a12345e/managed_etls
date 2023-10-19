@@ -3,7 +3,7 @@ import typing
 import string
 from abc import ABC
 from infra.operation import Operation
-from infra.abstracts.mng.principal import Principal
+from infra.principal import Principal
 from infra.operator import Operator
 from infra.product import Product
 

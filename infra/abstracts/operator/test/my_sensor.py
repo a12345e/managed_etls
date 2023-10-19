@@ -1,7 +1,7 @@
 import datetime
 from typing import Sequence
 
-from infra.abstracts.mng.principal import Principal
+from infra.principal import Principal
 from infra.abstracts.operator.sensor import Sensor
 from infra.operator import Operator
 from infra.product import Product

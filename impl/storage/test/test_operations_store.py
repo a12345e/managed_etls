@@ -4,7 +4,7 @@ from infra.abstracts.operator.sensor import Sensor
 from impl.storage.in_memory_storage import InMemoryOperationsStorage
 from infra.product import Product
 from infra.abstracts.storage.operations_store import OperationsStore
-from infra.abstracts.mng.principal import Principal
+from infra.principal import Principal
 
 
 def filter(x : Operation):

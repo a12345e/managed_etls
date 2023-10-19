@@ -5,7 +5,7 @@ from typing import Sequence
 from abc import ABC
 from infra.operator import Operator
 from infra.operation import Operation
-from infra.abstracts.mng.principal import Principal
+from infra.principal import Principal
 
 
 class Sensor(ABC, Operator):

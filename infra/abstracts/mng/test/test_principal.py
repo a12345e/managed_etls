@@ -1,5 +1,5 @@
 import unittest
-from infra.abstracts.mng.principal import Principal
+from infra.principal import Principal
 
 class MyTestCase(unittest.TestCase):
     def test_principal_test(self):

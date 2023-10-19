@@ -2,10 +2,9 @@ from datetime import datetime
 from uuid import uuid4
 from typing import Sequence, final
 from enum import Enum
-from infra.abstracts.mng.principal import Principal
+from infra.principal import Principal
 from infra.product import Product
 from typing import Final
-import string
 
 
 @final

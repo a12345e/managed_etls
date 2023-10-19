@@ -1,6 +1,6 @@
 import unittest
 from infra.abstracts.operator.test.my_sensor import MySensor
-from infra.abstracts.mng.principal import Principal
+from infra.principal import Principal
 
 
 class MyTestCase(unittest.TestCase):

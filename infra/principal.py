@@ -1,4 +1,5 @@
 from abc import ABC
+import string
 from typing import Sequence
 from infra.abstracts.operator.etl import Etl
 from infra.abstracts.operator.sensor import Sensor
@@ -14,12 +15,19 @@ class Principal(ABC):
         - realm
 
     """
-    def __int__(self, realm: Realm,
+    def __int__(self,
+                name: string,
+                realm: Realm,
                 etls: Sequence[Etl],
                 sensors: Sequence[Sensor]):
+        self._name = name
         self._realm = realm
         self._etls = etls
         self._sensors = sensors
+
+    @property
+    def name(self):
+        return self._name
 
     @property
     def realm(self):

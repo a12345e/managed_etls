@@ -4,5 +4,5 @@ from typing_extensions import Annotated
 
 
 class Shift(pydantic.BaseModel):
-    start: Annotated[datetime.datetime, pydantic.PastDatetime]
-    end: Annotated[datetime.datetime, pydantic.FutureDatetime]
+    start: datetime.datetime
+    end: datetime.datetime

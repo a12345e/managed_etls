@@ -1,5 +1,5 @@
 import unittest
-from data_cntrl.data_classes.model.operator_id import Operator
+from data_cntrl.data_classes.model.operator_id import O
 
 
 class MyTestCase(unittest.TestCase):

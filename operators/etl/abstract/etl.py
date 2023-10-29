@@ -1,32 +1,27 @@
 from abc import abstractmethod
 import typing
 from abc import ABC
-from data_cntrl.data_classes.model import Operation
-from application.abstract.application import Context
+import pydantic
 from component_id.abstract.component_id import ComponentId
-from data_cntrl.data_classes.model import Product
+from data_cntrl.data_classes.model.product import Product
+from data_cntrl.data_classes.model.operation import Operation
 
 
-class Etl(ABC, ComponentId):
+
+class Etl(ABC, pydantic.BaseModel):
     """
         The Etl operators is an abstract operators with 3 functions:
         Execution of a mission on behalf of a principal resulting with an Etl operators
         Respond what products it can operate on potentially from as set of raw materials
         Respond what products it can effectively create from a set of raw materials, meaning all dependencies exist
     """
-
-    def __init__(self, id: ComponentId):
-        """
-        :param id: ComponentId
-        """
-        self._id = id
+    id: ComponentId
 
     @abstractmethod
-    def execute(self, principal: Context, mission: Product) -> Operation:
+    def execute(self, operation: Operation) -> Operation:
         """
         Execute a mission on behalf of a principal
-        :param principal:
-        :param mission:
+        :param operation:
         :return: Operation
         """
         pass
@@ -43,7 +38,7 @@ class Etl(ABC, ComponentId):
         pass
 
     @abstractmethod
-    def ready_missions(self, ready_products: typing.Sequence[Product]) \
+    def get_ready_to_produce(self, ready_products: typing.Sequence[Product]) \
             -> typing.Sequence[Product]:
         """
         Returns Etl missions that it can form from the given raw materials

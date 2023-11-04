@@ -2,7 +2,7 @@ import datetime
 from abc import abstractmethod
 from typing import Sequence
 from abc import ABC
-from component_id.abstract.component_id import ComponentId
+from data_cntrl.data_classes.model.component_id import ComponentId
 from data_cntrl.data_classes.model import Operation
 from application.abstract.application import Context
 
@@ -10,8 +10,8 @@ from application.abstract.application import Context
 class Sensor(ABC):
     """
     Sensors are used to discover raw materials (operations) prepared by our suppliers.
-    Unlike our Etl the operators of discovery
-    creates an operators that has no source operations as those source operations creating the raw materials
+    Unlike our Etl the functions of discovery
+    creates an functions that has no source operations as those source operations creating the raw materials
     come from our suppliers realm.
     Sensors can run in context of an OperationsManager or can run from a one time managed_operations_version, doing one time shot.
     """

@@ -2,7 +2,7 @@ import datetime
 from typing import Sequence
 
 from application.abstract.application import Context
-from operators.etl.abstract.sensor import Sensor
+from functions.etl.abstract.sensor import Sensor
 from data_cntrl.data_classes.model import Product
 from data_cntrl.data_classes.model import Operation
 

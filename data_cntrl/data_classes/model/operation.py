@@ -1,30 +1,32 @@
 from datetime import datetime
 import pydantic
-from typing import List, Dict
+from typing import List, Dict, Tuple
 from enum import Enum
 from data_cntrl.data_classes.model.product import Product
 from data_cntrl.data_classes.model.execution_context import ExecutionContext
 from data_cntrl.data_classes.model.failure import Failure
+from data_cntrl.data_classes.model.realm import Realm
 
 
 class OPERATION_PHASE(Enum):
     CREATING = 1
     READY = 2
-    FAILED = 3
-    IGNORED = 4
-    POTENTIAL_USING_PRODUCTS_ARE_CREATED = 5
-    ALL_RESOURCE_PRODUCTS_ARE_FULLY_USED = 6
+    COMPLETE_SUCCESS = 5
+    COMPLETE_FAIL = 6
+    COMPLETE_IGNORE = 7
 
 
 class Operation(pydantic.BaseModel):
+    realm: Realm
     product: Product
     execution_context: ExecutionContext
-    phases: Dict[OPERATION_PHASE, datetime]
-    using_operations: List[str]
-    used_by_operations: List[str] = []
-    execution_context: ExecutionContext
-    trace: List[Dict[datetime.datetime, str]] = []
-    product_metrics: Dict[str, pydantic.StrictFloat]
-    success: pydantic.StrictBool | None
+    current_phase_value: OPERATION_PHASE
+    current_phase_start_time: datetime
+    phases_history: Dict[OPERATION_PHASE, datetime] = []
+    depending_on_operation_ids: List[pydantic.Annotated[pydantic.StrictStr, pydantic.StringConstraints(min_length=3)]] \
+        = []
+    used_by_operation_ids: List[str] = []
+    trace: List[Tuple[datetime.datetime, str]] = []
+    product_metrics: Dict[pydantic.Annotated[pydantic.StrictStr, pydantic.StringConstraints(min_length=3)], \
+        pydantic.StrictFloat] = []
     failure: Failure | None
-

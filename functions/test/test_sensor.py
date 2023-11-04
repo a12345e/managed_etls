@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 import unittest
-from operators.test.my_sensor import MySensor
+from functions.test.my_sensor import MySensor
 from application.abstract.application import Context
 
 

@@ -1,7 +1,7 @@
 from datetime import datetime
 import unittest
 from data_cntrl.data_classes.model.operation import Operation
-from operators.test.my_sensor import MySensor
+from functions.test.my_sensor import MySensor
 from data_cntrl.data_classes.model.product import Product
 from application.abstract.application import Context
 

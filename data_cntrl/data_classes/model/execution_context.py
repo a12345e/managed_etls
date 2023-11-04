@@ -1,11 +1,13 @@
 import pydantic
-from data_cntrl.data_classes.model.principal import Principal
-from data_cntrl.data_classes.model.shift import Shift
-from data_cntrl.data_classes.model.application import Application
+from datetime import datetime
+from data_cntrl.data_classes.model.component_id import ComponentId
 
 
 class ExecutionContext(pydantic.BaseModel):
-    principal: Principal
-    application: Application
-    shift: Shift
+    principal:  pydantic.Annotated[pydantic.StrictStr, pydantic.StringConstraints(min_length=3)]
+    shift_start: datetime
+    shift_end: datetime
+    infrastructure_task: pydantic.Annotated[pydantic.StrictStr, pydantic.StringConstraints(min_length=3)]
+    mission: ComponentId
+    application: ComponentId
 

@@ -1,6 +1,7 @@
 from datetime import datetime
 import pydantic
 from typing import List, Dict, Tuple
+from typing_extensions import Annotated
 from enum import Enum
 from data_cntrl.data_classes.model.product import Product
 from data_cntrl.data_classes.model.execution_context import ExecutionContext
@@ -20,13 +21,12 @@ class Operation(pydantic.BaseModel):
     realm: Realm
     product: Product
     execution_context: ExecutionContext
-    current_phase_value: OPERATION_PHASE
-    current_phase_start_time: datetime
+    current_phase_start_time: datetime = datetime.now()
     phases_history: Dict[OPERATION_PHASE, datetime] = []
-    depending_on_operation_ids: List[pydantic.Annotated[pydantic.StrictStr, pydantic.StringConstraints(min_length=3)]] \
+    depending_on_operation_ids: List[Annotated[pydantic.StrictStr, pydantic.StringConstraints(min_length=3)]] \
         = []
     used_by_operation_ids: List[str] = []
-    trace: List[Tuple[datetime.datetime, str]] = []
-    product_metrics: Dict[pydantic.Annotated[pydantic.StrictStr, pydantic.StringConstraints(min_length=3)], \
-        pydantic.StrictFloat] = []
-    failure: Failure | None
+    trace: List[Tuple[datetime, str]] = []
+    product_metrics: Dict[Annotated[pydantic.StrictStr, pydantic.StringConstraints(min_length=3)], pydantic.StrictFloat] = []
+    failure: Failure = None
+    phase:  OPERATION_PHASE = OPERATION_PHASE.CREATING

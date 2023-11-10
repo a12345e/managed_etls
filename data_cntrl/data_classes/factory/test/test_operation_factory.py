@@ -41,7 +41,7 @@ class OperationCreateTest(unittest.TestCase):
                                                                                                             1.1,
                                                                                                             "the default application"))
 
-            operation = create_operation(Realm.TEST, product)
+            create_operation(Realm.TEST, product)
 
 
 if __name__ == '__main__':

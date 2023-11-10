@@ -30,7 +30,7 @@ class OperationCreateTest(unittest.TestCase):
     @staticmethod
     def test_short_name():
         with pytest.raises(ValueError):
-            product = create_product(name='name1', store='store1', function='func1', batch='batch1')
+            product = create_product(realm=Realm.TEST, name='na', store='store1', function='func1', batch='batch1')
             execution_context = create_execution_context(principal='alon', shift_start=start,
                                                          shift_end=start + timedelta(days=1),
                                                          infrastructure_task='action=1000',

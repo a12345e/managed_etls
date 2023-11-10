@@ -13,7 +13,7 @@ start = datetime.now()
 class OperationCreateTest(unittest.TestCase):
     @staticmethod
     def test_positive():
-        product = create_product(name='name1', store='store1', function='func1', batch='batch1')
+        product = create_product(realm=Realm.TEST, name='name1', store='store1', function='func1', batch='batch1')
         execution_context = create_execution_context(principal='alon', shift_start=start,
                                                      shift_end=start + timedelta(days=1),
                                                      infrastructure_task='action=1000',
@@ -21,7 +21,7 @@ class OperationCreateTest(unittest.TestCase):
                                                                                                     1.1,
                                                                                                     "the zorem stuff"),
                                                      application=create_component_id_number_description("default", 1.1,
-                                                                                                        "the default application"))
+                                                                                                       "the default application"))
         operation = create_operation(Realm.TEST, product, execution_context)
         assert operation.realm == Realm.TEST
         assert operation.product.store == 'store1'

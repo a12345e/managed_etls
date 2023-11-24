@@ -6,7 +6,7 @@ from data_cntrl.data_classes.model import Operation
 class OperationsStore(ABC):
 
     @abstractmethod
-    def get_operations(self, filter: Callable) -> Sequence[Operation]:
+    def get_operations(self, filter: dict) -> Sequence[Operation]:
         pass
 
     @abstractmethod
